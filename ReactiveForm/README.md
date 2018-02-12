@@ -1,6 +1,12 @@
-# NgTrainningApp
+# ReactiveForm
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+
+#API link:
+https://github.com/pabitra7k/hello_fly_server
+
+#Sample Screenshot
+https://github.com/pabitra7k/sample/blob/master/Screenshot%20from%202018-02-12%2008-34-22.png
 
 ## Development server
 
