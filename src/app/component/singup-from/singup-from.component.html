@@ -1,0 +1,97 @@
+<h2 style="text-align:center">{{formHeading}}</h2>
+<div class="row custom-row" style="margin:3% 10%">
+    <div class= "col-sm-12 custom-container jumbotron">
+<form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+    <fieldset >
+    <legend>SignUp</legend>
+    <div class="form-group">
+    <label for="name">First Name:</label>
+    <input type="text" formControlName = "firstname"  id="inputfirstname" class="form-control" placeholder="firstname" value="">
+    <!-- First name error block -->
+    <div *ngIf="firstname.invalid && email.touched" class="col-sm-12 text-danger" style=" width: 100%;">
+
+    <div *ngIf = "firstname.errors?.required">
+        First name field can't be blank
+    </div>
+
+    <div *ngIf = "firstname.errors?.pattern">
+        The First name id doesn't seem right.Not allow number
+    </div>
+
+ </div>
+  </div> 
+  <div class="form-group" >
+    <label for="gender">Select Gender:</label>
+      <select formControlName = "gender"  id="inputgender" id="selectgender" class="form-control">             
+         <option *ngFor = "let g of genderList"
+           [value] = "g"> {{g}} 
+         </option>
+       </select>
+  </div>
+  <div class="form-group" >
+    <label for="course">Select Course:</label>
+      <select formControlName = "course"  id="inputcourse" id="selectcourse" class="form-control">             
+         <option *ngFor = "let cour of courseList"
+           [value] = "cour"> {{cour}} 
+         </option>
+       </select>
+  </div>
+  <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" formControlName = "email"  id="inputEmail" class="form-control" placeholder="email" value="">   
+      <!-- Email error block -->
+    <div *ngIf="email.invalid && email.touched"  class="col-sm-12 text-danger">
+        <div *ngIf = "email.errors?.required">
+            Email field can't be blank
+        </div>
+        <div *ngIf = "email.errors?.pattern">
+            The email id doesn't seem right
+        </div>
+    </div>
+ </div> 
+ <!--- Password Block -->
+ <!-- <div formGroup="passwordmatch"> -->
+ <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" formControlName = "password" id="inputPassword" class="form-control" placeholder="Password">    
+    
+    <div *ngIf="password.invalid && password.touched"  class="col-sm-12 text-danger">
+        <div *ngIf = "password.errors?.required">
+            Password field can't be blank
+        </div>
+        <div *ngIf = "password.errors?.pattern">
+            The password id doesn't seem right
+        </div>
+    </div>
+</div>
+  <!-- <div class="form-group">
+    <label for="confirmPassword">Conform Password</label>
+    <input type="password" formControlName = "confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+    <div class="alert alert-danger" *ngIf="passwordmatch.controls.confirmPassword.errors?.MutchPassword">Password not match</div>
+    
+  </div> -->
+<!-- </div> -->
+ <!--Terms and conditions Block -->
+             <div class="form-group checkbox">
+              <label>
+                <input type="checkbox" formControlName = "terms"> Confirm that you've read the Terms and 
+                Conditions
+              </label>
+              <!--- Terms error block -->
+      <div *ngIf="(terms.invalid && terms.touched)" class="col-sm-12 text-danger" style=" width: 100%;">
+       
+      Please accept the Terms and conditions first.
+    </div>
+            </div>   
+      <div class="form-group">
+          <button type="reset" class="btn btn-default">Cancel</button>
+          <button type="submit" [disabled] = "!signupForm.valid" class="btn btn-primary">Submit</button>
+      </div>
+    </fieldset>
+``</form> 
+    </div>
+</div> 
+<div style="text-align:center">
+<p>Form value {{ signupForm.value | json }} </p>
+<p> Form status {{ signupForm.status | json}} </p> 
+</div>
