@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Reactive Form</h2>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <!-- Sigle Validation -->
+    <div class="form-group">
+      <label>User name :</label>
+      <input type="text" class="form-control" formControlName="name" placeholder="Enter User name">
+      <div *ngIf="userName.touched && userName.invalid" class="alert alert-danger">User name is required.</div>
+      <!-- <div *ngIf="form.get('name').touched && form.get('name').invalid" class="alert alert-danger">User name is required.</div> -->
+    </div>
+
+    <!-- Async Validation -->
+    <div class="form-group">
+      <label for="inputEmail1">Email address</label>
+      <input type="email" class="form-control" id="inputEmail1" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email as pabitra">
+      <div *ngIf="email.pending">Checking for Uniqueness ...</div>
+      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      <div class="alert alert-danger" *ngIf="email.errors.shouldBeUnique">Email is already taken, Please try a different one !!</div>
+    </div>
+
+    <!-- Multiple Validation -->
+    <div class="form-group">
+      <label>Password :</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Enter password">
+      <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.cantContainSpace">Password cant contain space.</div>
+        <div *ngIf="password.errors.minlength">Password should be minimum {{password.errors.minlength.requiredLength}} char!</div>
+      </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="submitForm(form)"> Submit </button>
+  </form>
+
+  <div>
+    <h3>Check form Data !</h3>
+    <p>Your User name : {{form.value.name | json}}</p>
+    <p>Your User name : {{form.value.name | json}}</p>
+    <p>Form status: {{ form.status | json }}</p>
+  </div>
+</div>

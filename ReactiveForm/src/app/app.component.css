@@ -1,0 +1,10 @@
+.header {
+  margin: auto;
+  text-align: center;
+  background-color: darkorchid;
+  color: white;
+  padding: 10px;
+  /* position: fixed;
+  top: 0;
+  width: 100%; */
+}
